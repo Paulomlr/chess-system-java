@@ -9,6 +9,12 @@ import java.util.Scanner;
 
 public class UI {
 
+    // https://stackoverflow.com/questions/2979383/java-clear-the-console
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -30,9 +36,9 @@ public class UI {
 
     public static ChessPosition readChessPosition(Scanner sc){
         try {
-            String s = sc.nextLine();
+            String s = sc.nextLine(); // recebe as posições a1, b4, a2...
             char column = s.charAt(0);
-            int row = Integer.parseInt(s.substring(1));
+            int row = Integer.parseInt(s.substring(1)); // recorta o string apartir da posição 1 e converte para inteiro
             return new ChessPosition(column, row);
         }
         catch (RuntimeException e){
